@@ -1,40 +1,61 @@
-# Salesforce Senior Coding Challenge
+#NPSAction README
+##Project Description
 
-We appreciate you taking the time to participate and submit a coding challenge! 🥳
+The `NPSAction` class is designed for Salesforce and serves as a tool to send Net Promoter Score (NPS) surveys. It integrates seamlessly with Salesforce Flows and can automate the process of survey distribution based on specific criteria.
 
-In the next step we would like you to implement a simple Invocable Apex Action to be used by your Admin colleagues for a Flow. They need to do HTTP callouts to a NPS Service, whenever an Order got fulfilled. Below you will find a list of tasks and optional bonus points required for completing the challenge.
+##Table of Contents
 
-**🚀 This is a template repo, just use the green button to create your own copy and get started!**
+- [Installation](#installation)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
+- [Author](#author)
+- [Version](#version)
+- [Date](#date)
 
-### Invocable:
+##Installation
+To use the `NPSAction` class, follow these steps:
+1. Ensure you have access to a Salesforce environment.
+2. Import the `NPSAction` class into your Salesforce org.
+3. Create and configure a Flow in Salesforce that utilizes the `NPSAction` class.
+##Usage
+The `NPSAction` class is designed to be used within Salesforce Flows. It allows you to automate the sending of NPS surveys to customers based on specific conditions in your Salesforce data.
+To use the class, you'll need to create a Flow in Salesforce that invokes the `NPSAction.sendNPS` method. This method processes a list of order records and sends surveys to customers associated with those orders when specific criteria are met.
 
-* accepts the Order Record Ids as Input Parameter
-* queries the required records to get the Bill To E-Mail Address (`Contact.Email`) and OrderNumber (`Order.OrderNumber`)
-* sends the data to the NPS API
-* add a basic Flow, that executes your Action whenever an Order Status is changed to `Fulfilled`
+##Configuration
 
-### The Mock NPS API:
+There are a few key configuration points to consider:
+- Ensure that you have valid Salesforce Order and Contact records in your org.
+- Verify that the endpoint URL for the NPS survey API is correct in the `sendNPSSurvey` method.
+- Set up appropriate API authentication in the `Authorization` header of the HTTP request.
+- Customize the JSON data in the `sendNPSSurvey` method according to the requirements of your NPS survey API.
 
-* Hosted at https://salesforce-coding-challenge.herokuapp.com
-* ✨[API Documentation](https://thermondo.github.io/salesforce-coding-challenge/)
-* 🔐 uses HTTP Basic Auth, username: `tmondo`, password: `Noy84LRpYvMZuETB`
+##Contributing
+Contributions to the `NPSAction` class and its documentation are welcome. If you'd like to contribute, please follow these guidelines:
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and test them.
+4. Submit a pull request to the main repository.
 
-### ⚠️ Must Haves:
+##Acknowledgments
+This project is based on Salesforce development best practices and uses Apex, Salesforce Flow, and HTTP callouts to send NPS surveys.
 
-* [ ] use `sfdx` and `git`, commit all code and metadata needed (so we can test with a scratch org)
-* [ ] write good meaningful unit tests
-* [ ] properly separate concerns
-* [ ] make a list of limitations/possible problems
 
-### ✨ Bonus Points:
+##Author
+This project was authored and is maintained by Masroor.
 
-* [ ] layer your Code (use [apex-common](https://github.com/apex-enterprise-patterns/fflib-apex-common) if you like)
-* [ ] use Inversion of Control to write true unit tests and not integration tests
-* [ ] make sure customers don't get duplicate emails
-* [ ] think of error handling and return them to the Flow for the Admins to handle
+ ##Version
+Current version: 1.0.0
 
-### What if I don't finish?
+ ##Date
+Last updated: 18/10/2023
 
-Finishing these tasks should take about 2-3 hours, but we are all about **'quality > speed'**, so it's better to deliver a clean MVP and leave some TODOs open.
 
-Try to produce something that is at least minimally functional. Part of the exercise is to see what you prioritize first when you have a limited amount of time. For any unfinished tasks, please do add `TODO` comments to your code with a short explanation. You will be given an opportunity later to go into more detail and explain how you would go about finishing those tasks.
+##limitations or potential problems 
+
+- API Rate Limits: Consider the API rate limits for the NPS service and handle them appropriately, perhaps with back-off strategies.
+- Duplicate Emails: Implement a mechanism to prevent sending duplicate emails to customers.
+- Error Handling: Enhance the error handling process and ensure errors are returned to the Flow for administrator handling.
+
